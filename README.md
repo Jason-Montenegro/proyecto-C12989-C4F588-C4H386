@@ -1,14 +1,25 @@
-# Nombre del juego
+# [NOMBRE DE JUEGO POR DEFINIR]
 
 ## Descripción
 
 <!-- Falta descripcion -->
 
-## Integrantes
+## Integrantes con roles
 
-- **C4H386** Jason Montenegro Navarro
-- **C4F588** Juan Gonzalez Marquez
-- **C12989** Raul Gadea Alfaro
+### **C4H386** Jason Montenegro Navarro
+
+- Servidor
+- Diseño
+
+### - **C4F588** Juan Gonzalez Marquez
+
+- Cliente
+- Coordinación
+
+### - **C12989** Raul Gadea Alfaro
+
+- Frontend
+- QA
 
 ## Justificación de requisitos
 
