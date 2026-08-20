@@ -64,7 +64,11 @@ funcionalidad de configuración de audio y lenguaje en la pantalla de lobby.
 
 ## Justificación de requisitos
 
-<!-- Falta justificacion -->
+Hurry to the Top cumple con los requisitos mínimos de complejidad establecidos en la rúbrica, ya que su desarrollo implica mecánicas de movimiento, colisiones, rebote, muerte/reaparición y cámara dinámica, las cuales requieren sincronización de estado compartido entre los jugadores y el servidor.
+
+Durante las partidas se espera que la acción más repetida sea el clic o tap para moverse. Con un mínimo de 4 jugadores por sala, el servidor debe mantener el estado sincronizado y notificar a cada cliente sus actualizaciones en tiempo real, actuando como única fuente de verdad: es el servidor quien determina la posición de jugadores y obstáculos, y valida que cada solicitud de movimiento cumpla las reglas del juego, evitando así que un cliente pueda hacer trampa enviando posiciones inválidas.
+
+La carga sobre el servidor crece con el número de jugadores conectados simultáneamente. Para afrontar esta complejidad consideramos usar Colyseus, un framework open-source para Node.js que provee manejo de salas (rooms) y sincronización automática de estado en tiempo real entre clientes, reduciendo así la necesidad de implementar esta capa desde cero.
 
 ## Enlace de espacio de colaboración en ClickUp
 
