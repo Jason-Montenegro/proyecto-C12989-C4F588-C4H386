@@ -2,7 +2,7 @@
 
 ## Descripción
 
-El juego consiste en una competición entre 4 y 10 jugadores que compiten por
+El juego consiste en una competición entre 2 y 10 jugadores que compiten por
 llegar al final de un circuito de obstáculos. Deberán partir del mismo lugar
 y evitar colisionar con obstáculos en el camino. El juego pretende ser
 jugable desde navegadores web, ya sea de escritorio o móviles. Esta basado en
@@ -35,6 +35,8 @@ borde del mapa.
 penalización temporal. Es decir, aunque llegue a reaparecer en el centro del
 enfoque de la cámara del juego y llegue a la delantera, al final su puntuación
 de tiempo tendra una penalización dependiendo del puntaje que haya obtenido.
+- En determinadas zonas del circuito aparecerán plataformas de impulso. Cuando un jugador pase sobre una de estas plataformas, su avatar recibirá automáticamente un aumento temporal de velocidad durante 2 segundos. Mientras el efecto esté activo, el jugador conservará las mismas reglas de colisión y podrá seguir rebotando o muriendo si entra en contacto con un obstáculo peligroso. El servidor será el encargado de determinar cuándo inicia y termina el efecto para que todos los jugadores observen el mismo estado.
+- Durante la partida aparecerán zonas de terreno lento ubicadas en puntos específicos del circuito. Cuando un jugador entre en una de estas zonas, su velocidad de desplazamiento se reducirá mientras permanezca dentro de ella y volverá a su velocidad normal inmediatamente después de salir. Estas zonas afectarán a todos los jugadores por igual y su ubicación será establecida al cargar el mapa de la partida, obligando a los jugadores a decidir entre atravesarlas directamente o buscar una ruta alternativa.
 
 Los requisitos anteriores corresponden al listado de funcionalidades que
 describen concretamente la dinámica de juego **en partida**. Adicional a esta
@@ -66,7 +68,7 @@ funcionalidad de configuración de audio y lenguaje en la pantalla de lobby.
 
 Hurry to the Top cumple con los requisitos mínimos de complejidad establecidos en la rúbrica, ya que su desarrollo implica mecánicas de movimiento, colisiones, rebote, muerte/reaparición y cámara dinámica, las cuales requieren sincronización de estado compartido entre los jugadores y el servidor.
 
-Durante las partidas se espera que la acción más repetida sea el clic o tap para moverse. Con un mínimo de 4 jugadores por sala, el servidor debe mantener el estado sincronizado y notificar a cada cliente sus actualizaciones en tiempo real, actuando como única fuente de verdad: es el servidor quien determina la posición de jugadores y obstáculos, y valida que cada solicitud de movimiento cumpla las reglas del juego, evitando así que un cliente pueda hacer trampa enviando posiciones inválidas.
+Durante las partidas se espera que la acción más repetida sea el clic o tap para moverse. Con un mínimo de 2 jugadores por sala, el servidor debe mantener el estado sincronizado y notificar a cada cliente sus actualizaciones en tiempo real, actuando como única fuente de verdad: es el servidor quien determina la posición de jugadores y obstáculos, y valida que cada solicitud de movimiento cumpla las reglas del juego, evitando así que un cliente pueda hacer trampa enviando posiciones inválidas.
 
 La carga sobre el servidor crece con el número de jugadores conectados simultáneamente. Para afrontar esta complejidad consideramos usar Colyseus, un framework open-source para Node.js que provee manejo de salas (rooms) y sincronización automática de estado en tiempo real entre clientes, reduciendo así la necesidad de implementar esta capa desde cero.
 
