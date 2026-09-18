@@ -105,3 +105,28 @@ los mismos contenidos que las contrapartes de escritorio.
   contraseña.
 - **Botón "Registrarse" destacado**: único call-to-action visible, en color
   sólido.
+
+## Página Ingame y resultados
+
+<img src="./desktop/d_ingame.png" alt="Página Ingame para escritorio"
+  width="420" />
+<img src="./mobile/m_ingame.png" alt="Página Ingame para móvil"
+  width="210" />
+
+- **Ingame:** Se diseñó un recorrido vertical con diferentes obstáculos, donde los jugadores
+  avanzan desde la zona de inicio hasta la línea de meta. El primer jugador en alcanzar la meta
+  obtiene la primera posición. Dentro del escenario el jugador encontrará obstáculos que pueden
+  hacer que su avatar rebote o muera, y zonas de impulso representadas como esferoides que aumentan
+  temporalmente la velocidad del jugador. La cámara sigue a los jugadores, y si alguno se queda atrás,
+  puede ser alcanzado por el borde inferior del mapa, lo que resultará en su muerte y penalización de tiempo.
+
+- **Resultados:** Al finalizar, se muestra una tabla con las posiciones de los jugadores.
+  Esta tabla se actualiza conforme los demás jugadores alcanzan la meta, permitiendo visualizar
+  el resultado de la partida de forma dinámica.
+
+- **Navegación:** La pantalla de resultados incluye las opciones de **Jugar de nuevo** y
+  **Volver al lobby**, permitiendo continuar la partida o regresar a la selección de salas.
+
+- **Multiplataforma:** El flujo y las funcionalidades se mantienen iguales en **web y móvil**,
+  modificando únicamente la distribución de los elementos para adaptarse al tamaño de pantalla.
+
