@@ -130,3 +130,4 @@ los mismos contenidos que las contrapartes de escritorio.
 - **Multiplataforma:** El flujo y las funcionalidades se mantienen iguales en **web y móvil**,
   modificando únicamente la distribución de los elementos para adaptarse al tamaño de pantalla.
 
+
