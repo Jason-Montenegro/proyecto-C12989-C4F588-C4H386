@@ -1,0 +1,22 @@
+{
+  "name": "Hurry to the Top",
+  "version": "1.0.0",
+  "description": "El juego consiste en una competición entre 2 y 10 jugadores que compiten por llegar al final de un circuito de obstáculos. Deberán partir del mismo lugar y evitar colisionar con obstáculos en el camino. El juego pretende ser jugable desde navegadores web, ya sea de escritorio o móviles. Esta basado en partidas multijugador respaldadas por un servidor que gestione el estado de las partidas del juego centralizadamente.",
+  "scripts": {
+    "check": "npm run lint && npm run format:check",
+    "lint": "npm run lint:frontend",
+    "lint:frontend": "cd frontend && npm run lint --prefix frontend",
+    "format:check": "prettier . --check",
+    "format": "prettier . --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jason-Montenegro/proyecto-C12989-C4F588-C4H386.git"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "homepage": "https://github.com/Jason-Montenegro/proyecto-C12989-C4F588-C4H386#readme",
+  "dependencies": {
+    "prettier": "^3.9.9"
+  }
+}
