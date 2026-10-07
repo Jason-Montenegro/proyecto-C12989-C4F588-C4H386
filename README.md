@@ -75,3 +75,7 @@ La carga sobre el servidor crece con el número de jugadores conectados simultá
 ## Enlace de espacio de colaboración en ClickUp
 
 <https://sharing.clickup.com/90141522269/l/h/6-901419146253-1/4f18c24bd266d0a>
+
+## Enlace al sitio por github pages
+
+<https://jason-montenegro.github.io/proyecto-C12989-C4F588-C4H386/>
