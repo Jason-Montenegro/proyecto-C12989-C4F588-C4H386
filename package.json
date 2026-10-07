@@ -5,7 +5,7 @@
   "scripts": {
     "check": "npm run lint && npm run format:check",
     "lint": "npm run lint:frontend",
-    "lint:frontend": "cd frontend && npm run lint --prefix frontend",
+    "lint:frontend": "npm run lint --prefix frontend",
     "format:check": "prettier . --check",
     "format": "prettier . --write"
   },
