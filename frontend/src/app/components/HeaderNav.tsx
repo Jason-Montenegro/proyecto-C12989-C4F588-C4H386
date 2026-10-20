@@ -16,6 +16,9 @@ export default function HeaderNav() {
         <li>
           <Link href="/play">Jugar ahora</Link>
         </li>
+        <li>
+          <Link href="/lobby">Ir al lobby</Link>
+        </li>
       </ul>
     </nav>
   );
