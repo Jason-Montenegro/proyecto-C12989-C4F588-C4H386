@@ -14,7 +14,7 @@ export default function HeaderNav() {
           <Link href="/about">Sobre Nosotros</Link>
         </li>
         <li>
-          <Link href="/play">Jugar ahora</Link>
+          <Link href="/ingame">Jugar ahora</Link>
         </li>
       </ul>
     </nav>
