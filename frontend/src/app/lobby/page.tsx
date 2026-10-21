@@ -1,16 +1,17 @@
 import Link from "next/link";
-import Image from "next/image";
 import icon from "@/../public/icon.svg";
 import group from "@/../public/group.png";
+import HeaderNav from "@/app/components/HeaderNav";
 
 export default function LobbyPage() {
   return (
     <>
       <header>
         <Link href="/">
-          <Image src={icon} alt="Hurry to the Top" width={64} height={64} />
+          <img src={icon.src} alt="Hurry to the Top" width={64} height={64} />
         </Link>
         <p>PlayerName</p>
+        <HeaderNav />
         <nav aria-label="Cuenta del jugador">
           <Link href="/login">Mi cuenta</Link>
         </nav>
@@ -21,8 +22,8 @@ export default function LobbyPage() {
 
         <section>
           <h2>Buscar partida</h2>
-          <Image
-            src={group}
+          <img
+            src={group.src}
             alt="Grupo de jugadores"
             width={300}
             height={300}
@@ -32,7 +33,7 @@ export default function LobbyPage() {
 
         <section>
           <h2>Unirse a partida</h2>
-          <form action="#" method="get">
+          <form>
             <label htmlFor="codigo-partida">Código de partida</label>
             <input
               type="text"
@@ -40,14 +41,14 @@ export default function LobbyPage() {
               name="codigo-partida"
               required
             />
-            <button type="submit">Unirse</button>
+            <button type="button">Unirse</button>
           </form>
         </section>
 
         <section>
           <h2>Crear partida</h2>
-          <Image
-            src={icon}
+          <img
+            src={icon.src}
             alt="Logo de Hurry to the Top"
             width={180}
             height={180}
