@@ -52,9 +52,9 @@ export default function Home() {
         </p>
       </FeatureSection>
 
-      <section>
+      <p>
         <Link href="/play">Jugar ahora</Link>
-      </section>
+      </p>
     </main>
   );
 }

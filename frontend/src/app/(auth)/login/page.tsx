@@ -3,8 +3,9 @@ import Link from "next/link";
 export default function LoginPage() {
   return (
     <main>
-      <form action="#" method="post">
-        <section>
+      <h1>Iniciar sesión</h1>
+      <form>
+        <p>
           <label>
             Usuario
             <input
@@ -14,8 +15,8 @@ export default function LoginPage() {
               required
             />
           </label>
-        </section>
-        <section>
+        </p>
+        <p>
           <label>
             Contraseña
             <input
@@ -25,7 +26,7 @@ export default function LoginPage() {
               required
             />
           </label>
-        </section>
+        </p>
 
         <nav>
           <ul>
@@ -35,7 +36,7 @@ export default function LoginPage() {
           </ul>
         </nav>
 
-        <button type="submit">Ingresar</button>
+        <button type="button">Ingresar</button>
       </form>
     </main>
   );

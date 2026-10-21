@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import github from "@/../public/github.png";
 
 export default function AboutPage() {
@@ -30,7 +29,7 @@ export default function AboutPage() {
 
         <p>
           <Link href="https://github.com/Jason-Montenegro/proyecto-C12989-C4F588-C4H386">
-            <Image src={github} alt="" width={30} height={30} />
+            <img src={github.src} alt="" width={30} height={30} />
             Repositorio
           </Link>
         </p>

@@ -1,8 +1,9 @@
 export default function RegisterPage() {
   return (
     <main>
-      <form action="#" method="post">
-        <section>
+      <h1>Registrarse</h1>
+      <form>
+        <p>
           <label>
             Usuario
             <input
@@ -12,14 +13,14 @@ export default function RegisterPage() {
               required
             />
           </label>
-        </section>
-        <section>
+        </p>
+        <p>
           <label>
             Correo electrónico
             <input type="email" name="email" autoComplete="email" required />
           </label>
-        </section>
-        <section>
+        </p>
+        <p>
           <label>
             Contraseña
             <input
@@ -29,8 +30,8 @@ export default function RegisterPage() {
               required
             />
           </label>
-        </section>
-        <section>
+        </p>
+        <p>
           <label>
             Confirmar contraseña
             <input
@@ -40,9 +41,9 @@ export default function RegisterPage() {
               required
             />
           </label>
-        </section>
+        </p>
 
-        <button type="submit">Registrarse</button>
+        <button type="button">Registrarse</button>
       </form>
     </main>
   );

@@ -134,10 +134,10 @@ docker compose up --build -d
 Para acceder al cliente, abrir un navegador web y dirigirse a la siguiente URL:
 
 ```bash
-http://localhost:8080
+http://localhost:3000
 ```
 
-Para detener el contenedor, presionar `Ctrl + C` y luego ejecutar:
+Para detener el contenedor, ejecutar:
 
 ```bash
 docker compose down
@@ -161,3 +161,35 @@ Ingresar a la rama `develop`, luego crear una rama nueva con el prefijo
 `feature/` y el nombre de la funcionalidad a desarrollar.
 Una vez terminada la funcionalidad, crear un pull request hacia la rama
 `develop` para revisión y merge.
+
+## Entrega de HTML semántico
+
+Las rutas son `/`, `/how-to-play`, `/about`, `/login`, `/register`,
+`/lobby`, `/play`, `/results` y `/credits`. Los controles del juego y
+formularios son maquetas sin lógica interactiva.
+
+Para ejecutar localmente:
+
+```bash
+cd frontend
+npm ci
+npm run dev
+```
+
+Para comprobar y preparar la publicación en GitHub Pages:
+
+```bash
+npm run lint
+npm run build
+```
+
+El sitio publicado se encuentra enlazado arriba en este README. El repositorio
+ya dispone de un flujo de despliegue a GitHub Pages desde `develop`.
+
+Para entregar las evidencias W3C, abrir cada una de las nueve rutas en Chrome,
+abrir las herramientas de desarrollador, copiar el `outerHTML` de la etiqueta
+`html` y validarlo mediante entrada directa en
+<https://validator.w3.org/nu/#textarea>. Guardar una captura de cada resultado
+y adjuntarlas al Pull Request abierto de `develop` hacia `main`.
+
+La atribución de los recursos externos está disponible en `/credits`.
