@@ -1,4 +1,4 @@
-import Image, { type StaticImageData } from "next/image";
+import type { StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 
 type FeatureSectionProps = {
@@ -16,16 +16,16 @@ export default function FeatureSection({
   imageLeft = true,
   children,
 }: FeatureSectionProps) {
-  const picture = <Image src={image} alt={imageAlt} width={300} />;
+  const picture = <img src={image.src} alt={imageAlt} width={300} />;
 
   return (
-    <div>
+    <section aria-label={title}>
       {imageLeft && picture}
       <article>
         <h2>{title}</h2>
         {children}
       </article>
       {!imageLeft && picture}
-    </div>
+    </section>
   );
 }
