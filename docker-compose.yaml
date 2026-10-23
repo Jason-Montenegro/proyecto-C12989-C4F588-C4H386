@@ -1,0 +1,22 @@
+name: httt
+
+services:
+  frontend:
+    container_name: httt-frontend
+    pull_policy: never
+    image: httt-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./frontend:/app
+      - httt-frontend-node-modules:/app/node_modules
+      - httt-frontend-nextjs:/app/.next
+
+volumes:
+  httt-frontend-node-modules:
+  httt-frontend-nextjs:
