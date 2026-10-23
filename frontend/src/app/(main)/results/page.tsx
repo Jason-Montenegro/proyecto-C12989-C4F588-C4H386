@@ -1,25 +1,24 @@
 import Link from "next/link";
-import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
+import Image from "next/image";
+import ganador from "@/../public/assets/jugador_azul.png";
 
 export default function ResultsPage() {
   return (
-    <>
-      <Header />
-      <main>
+    <main>
       <h1>Resultados de carrera</h1>
 
-      <section>
-        <h2>¡Llegaste en primer lugar!</h2>
+      <dialog open aria-labelledby="ganador">
+        <Image src={ganador} width={64} height={64} alt="Avatar de RodrigoC" />
+        <h2 id="ganador">¡Llegaste de 1er lugar!</h2>
         <p>
-          <strong>Tiempo:</strong> 00:45:38
+          Tiempo: <time dateTime="PT45.38S">00:45:38</time>
         </p>
-        <p>Resultados de ejemplo para esta entrega.</p>
-      </section>
+      </dialog>
 
-      <section>
-        <h2>Clasificación</h2>
+      <section aria-labelledby="clasificacion">
+        <h2 id="clasificacion">Clasificación</h2>
         <table>
+          <caption>Posiciones finales de la sala</caption>
           <thead>
             <tr>
               <th scope="col">Posición</th>
@@ -55,18 +54,13 @@ export default function ResultsPage() {
       <nav aria-label="Opciones después de la carrera">
         <ul>
           <li>
-            <Link href="/play">Jugar de nuevo</Link>
+            <Link href="/ingame">Jugar de nuevo</Link>
           </li>
           <li>
             <Link href="/lobby">Salir al lobby</Link>
           </li>
-          <li>
-            <Link href="/">Inicio</Link>
-          </li>
         </ul>
       </nav>
-      </main>
-      <Footer />
-    </>
+    </main>
   );
 }
