@@ -1,0 +1,196 @@
+/* ==========================================================================
+   Menú de navegación principal
+   Escritorio: barra horizontal. Móvil: menú hamburguesa con <details>,
+   desplegado en filas con ícono, texto y flecha (según el wireframe móvil).
+   ========================================================================== */
+
+/* --- Enlaces (comunes a ambas versiones) --- */
+.link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--touch-target);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.link:hover {
+  background: var(--color-surface-raised);
+  color: var(--color-primary);
+}
+
+/* Llamada a la acción "Jugar ahora", destacada como en el wireframe */
+.cta {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.cta:hover {
+  background: var(--color-primary-strong);
+  box-shadow: var(--glow-primary);
+  color: var(--color-on-primary);
+}
+
+/* --- Versión escritorio --- */
+.desktopList {
+  display: none;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0;
+  list-style: none;
+}
+
+/* --- Versión móvil: botón hamburguesa --- */
+.mobileMenu {
+  position: relative;
+}
+
+.toggle {
+  display: block;
+  width: var(--touch-target);
+  height: var(--touch-target);
+  border-radius: var(--radius-sm);
+  background: url("../../../public/icons/barsHorizontal.png") center / 1.5rem
+    no-repeat;
+  list-style: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.toggle::marker {
+  content: "";
+}
+
+.toggle:hover,
+.mobileMenu[open] .toggle {
+  background-color: var(--color-surface-raised);
+}
+
+/* --- Versión móvil: lista desplegada bajo el botón, alineada a la derecha
+   (así funciona igual en todos los encabezados del sitio) --- */
+.mobileList {
+  position: absolute;
+  inset-inline-end: 0;
+  top: calc(100% + var(--space-2));
+  z-index: 20;
+  width: min(22rem, 100vw - 2 * var(--space-4));
+  max-height: calc(100dvh - var(--header-height) - var(--space-4));
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  list-style: none;
+  animation: menu-drop var(--transition-base);
+}
+
+.mobileList .link {
+  padding: var(--space-3) var(--space-4);
+  border-block-end: 1px solid var(--color-border);
+  border-radius: 0;
+  text-transform: uppercase;
+}
+
+/* Ícono a la izquierda de cada fila */
+.mobileList .link::before {
+  content: "";
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--icon) center / contain no-repeat;
+}
+
+/* Flecha a la derecha de cada fila */
+.mobileList .link::after {
+  content: "›";
+  margin-inline-start: auto;
+  color: var(--color-text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.mobileList .cta {
+  font-size: 0.75rem;
+}
+
+.mobileList .cta::after {
+  color: var(--color-on-primary);
+}
+
+/* El ícono de "Jugar ahora" va oscuro sobre el fondo amarillo */
+.mobileList .cta::before {
+  filter: invert(1);
+}
+
+/* --- Íconos (Kenney Game Icons, CC0) --- */
+.iconHome {
+  --icon: url("../../../public/icons/home.png");
+}
+
+.iconQuestion {
+  --icon: url("../../../public/icons/question.png");
+}
+
+.iconInformation {
+  --icon: url("../../../public/icons/information.png");
+}
+
+.iconMultiplayer {
+  --icon: url("../../../public/icons/multiplayer.png");
+}
+
+.iconTrophy {
+  --icon: url("../../../public/icons/trophy.png");
+}
+
+.iconLogin {
+  --icon: url("../../../public/icons/singleplayer.png");
+}
+
+.iconRegister {
+  --icon: url("../../../public/icons/plus.png");
+}
+
+.iconStar {
+  --icon: url("../../../public/icons/star.png");
+}
+
+.iconPlay {
+  --icon: url("../../../public/icons/right.png");
+}
+
+/* --- Cambio a barra horizontal en pantallas anchas --- */
+@media (width >= 64rem) {
+  .desktopList {
+    display: flex;
+  }
+
+  .mobileMenu {
+    display: none;
+  }
+}
+
+@keyframes menu-drop {
+  from {
+    opacity: 0;
+    translate: 0 -0.5rem;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}

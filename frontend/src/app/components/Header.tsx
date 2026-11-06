@@ -1,11 +1,12 @@
 import Link from "next/link";
 import HeaderNav from "@/app/components/HeaderNav";
 import icon from "@/../public/icon.svg";
+import styles from "./Header.module.css";
 
 export default function Header() {
   return (
-    <header>
-      <Link href="/">
+    <header className={styles.header}>
+      <Link href="/" className={styles.logo}>
         <img
           src={icon.src}
           width={40}
