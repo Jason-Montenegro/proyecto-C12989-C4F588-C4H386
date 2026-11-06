@@ -1,0 +1,380 @@
+/* ==========================================================================
+   Hurry to the Top: estilos comunes a todas las páginas
+   Cada página tiene además su propia hoja (*.module.css) junto a su page.tsx.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Variables de diseño
+   Paleta "Arcade nocturno" generada con Coolors:
+   https://coolors.co/12122b-1e1e3f-2a2a55-ffc233-3ddc84-ff7088-f4f4f8
+   Todas las combinaciones de texto y fondo cumplen contraste AA de WCAG.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Colores base */
+  --color-bg: #12122b;
+  --color-bg-translucent: rgb(18 18 43 / 90%);
+  --color-surface: #1e1e3f;
+  --color-surface-raised: #2a2a55;
+  --color-overlay: rgb(8 8 20 / 80%);
+
+  /* Colores de marca y estado */
+  --color-primary: #ffc233;
+  --color-primary-strong: #ffd56b;
+  --color-primary-shadow: #b8861a;
+  --color-accent: #3ddc84;
+  --color-danger: #ff7088;
+
+  /* Texto */
+  --color-text: #f4f4f8;
+  --color-text-muted: #b4b4d0;
+  --color-on-primary: #12122b;
+
+  /* Bordes: el fuerte cumple 3:1 para controles de formulario */
+  --color-border: #4a4a85;
+  --color-border-strong: #7575b3;
+
+  /* Tipografía: las variables --font-display y --font-body las define next/font */
+  --font-heading: var(--font-display, "Courier New"), monospace;
+  --font-text: var(--font-body, system-ui), sans-serif;
+
+  /* Espaciado */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+
+  /* Bordes redondeados, sombras y brillos */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-card: 0 8px 24px rgb(0 0 0 / 35%);
+  --glow-primary: 0 0 18px rgb(255 194 51 / 45%);
+
+  /* Movimiento */
+  --transition-fast: 150ms ease-out;
+  --transition-base: 250ms ease-out;
+
+  /* Medidas de layout */
+  --content-width: 72rem;
+  --header-height: 4rem;
+  --touch-target: 44px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset y base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: radial-gradient(
+      circle at 50% 0%,
+      var(--color-surface) 0%,
+      var(--color-bg) 60%
+    )
+    var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-text);
+  line-height: 1.6;
+}
+
+main {
+  flex: 1;
+  width: min(100% - 2 * var(--space-4), var(--content-width));
+  margin-inline: auto;
+  padding-block: var(--space-8) var(--space-12);
+}
+
+img,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* --------------------------------------------------------------------------
+   3. Tipografía
+   Los títulos usan la fuente pixelada; el texto corrido usa Inter.
+   -------------------------------------------------------------------------- */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.5;
+  text-wrap: balance;
+}
+
+h1 {
+  margin-block-end: var(--space-6);
+  color: var(--color-primary);
+  font-size: clamp(1.1rem, 2.5vw + 0.5rem, 2rem);
+  text-shadow: 3px 3px 0 var(--color-primary-shadow);
+}
+
+h2 {
+  margin-block-end: var(--space-4);
+  font-size: clamp(0.85rem, 1.5vw + 0.4rem, 1.25rem);
+}
+
+h3 {
+  margin-block-end: var(--space-3);
+  font-size: 0.8rem;
+}
+
+p + p {
+  margin-block-start: var(--space-4);
+}
+
+a {
+  color: var(--color-primary);
+  text-underline-offset: 0.2em;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-strong);
+}
+
+/* --------------------------------------------------------------------------
+   4. Foco visible para navegación con teclado
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Botones
+   Se aplican a <button> y a enlaces con la clase .button.
+   La sombra inferior simula una tecla arcade que se hunde al presionarla.
+   -------------------------------------------------------------------------- */
+button,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--touch-target);
+  padding: var(--space-3) var(--space-6);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  box-shadow: 0 4px 0 var(--color-primary-shadow);
+  color: var(--color-on-primary);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    translate var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+button:hover,
+.button:hover {
+  background: var(--color-primary-strong);
+  box-shadow:
+    0 6px 0 var(--color-primary-shadow),
+    var(--glow-primary);
+  color: var(--color-on-primary);
+  translate: 0 -2px;
+}
+
+button:active,
+.button:active {
+  box-shadow: 0 0 0 var(--color-primary-shadow);
+  translate: 0 4px;
+}
+
+/* Variante secundaria: contorno, para acciones menos importantes */
+.buttonSecondary {
+  border: 2px solid var(--color-border-strong);
+  background: transparent;
+  box-shadow: none;
+  color: var(--color-text);
+}
+
+.buttonSecondary:hover {
+  border-color: var(--color-primary);
+  background: var(--color-surface-raised);
+  box-shadow: var(--glow-primary);
+  color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   6. Formularios
+   -------------------------------------------------------------------------- */
+label {
+  display: block;
+  font-weight: 600;
+}
+
+input {
+  display: block;
+  width: 100%;
+  min-height: var(--touch-target);
+  margin-block-start: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  font: inherit;
+  font-weight: 400;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+input:hover,
+input:focus-visible {
+  border-color: var(--color-primary);
+}
+
+input:focus-visible {
+  box-shadow: var(--glow-primary);
+}
+
+/* --------------------------------------------------------------------------
+   7. Tablas
+   -------------------------------------------------------------------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+caption {
+  padding-block-end: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  text-align: start;
+}
+
+th {
+  padding: var(--space-3);
+  border-block-end: 2px solid var(--color-border-strong);
+  color: var(--color-text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 400;
+  text-align: start;
+  text-transform: uppercase;
+}
+
+td {
+  padding: var(--space-3);
+  border-block-end: 1px solid var(--color-border);
+}
+
+tbody tr {
+  transition: background-color var(--transition-fast);
+}
+
+tbody tr:hover {
+  background: var(--color-surface-raised);
+}
+
+/* Tabla compacta para paneles angostos (HUD y resultados) */
+.compactTable th {
+  padding-inline: var(--space-2);
+  font-size: 0.55rem;
+}
+
+.compactTable td {
+  padding-inline: var(--space-2);
+}
+
+/* --------------------------------------------------------------------------
+   8. Componentes reutilizables
+   -------------------------------------------------------------------------- */
+
+/* Tarjeta: contenedor elevado sobre el fondo */
+.card {
+  padding: clamp(var(--space-4), 4vw, var(--space-6));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+/* Título de tarjeta: centrado y separado del contenido por una línea,
+   como en los wireframes */
+.cardTitle {
+  margin-block-end: var(--space-4);
+  padding-block-end: var(--space-3);
+  border-block-end: 1px solid var(--color-border);
+  color: var(--color-primary);
+  font-size: clamp(0.9rem, 1.5vw + 0.4rem, 1.25rem);
+  text-align: center;
+  text-shadow: none;
+  text-transform: uppercase;
+}
+
+/* Efecto de imagen: en dispositivos con puntero, las imágenes aparecen
+   desaturadas y recuperan el color con un leve acercamiento al pasar encima */
+.imageFx {
+  border-radius: var(--radius-md);
+  transition:
+    filter var(--transition-base),
+    scale var(--transition-base);
+}
+
+@media (hover: hover) {
+  .imageFx {
+    filter: grayscale(70%);
+  }
+
+  .imageFx:hover {
+    filter: none;
+    scale: 1.04;
+  }
+}
+
+/* Oculta texto visualmente pero lo mantiene para lectores de pantalla */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   9. Movimiento reducido
+   Si el usuario lo pide en su sistema, se anulan animaciones y transiciones.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
