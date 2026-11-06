@@ -1,0 +1,212 @@
+/* ==========================================================================
+   Lobby de partidas
+   Cabecera con el jugador, tres paneles (buscar, unirse, crear) y una barra
+   de pestañas fija abajo, como en el wireframe.
+   ========================================================================== */
+
+/* --- Cabecera del jugador --- */
+.header {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-block-end: 1px solid var(--color-border);
+  background: var(--color-bg-translucent);
+}
+
+.logo {
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  box-shadow: 0 3px 0 var(--color-primary-shadow);
+}
+
+.logo img {
+  width: 3rem;
+}
+
+.player {
+  margin-inline-end: auto;
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(0.8rem, 1.5vw + 0.4rem, 1.1rem);
+}
+
+/* --- Paneles --- */
+.lobby {
+  display: grid;
+  gap: var(--space-6);
+
+  /* espacio para que la barra de pestañas no tape el contenido */
+  padding-block-end: calc(var(--space-12) + 4.5rem);
+}
+
+.title {
+  margin-block-end: 0;
+}
+
+.panel {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+  transition:
+    border-color var(--transition-base),
+    translate var(--transition-base);
+}
+
+.panel:hover {
+  border-color: var(--color-primary);
+  translate: 0 -4px;
+}
+
+.panel h2 {
+  margin: 0;
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+.panel button {
+  justify-self: start;
+}
+
+/* Ilustraciones oscuras sobre panel amarillo, igual que en la landing */
+.picture {
+  justify-self: center;
+  width: min(100%, 14rem);
+  padding: var(--space-4);
+  border: 3px solid var(--color-primary-shadow);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-strong),
+    var(--color-primary)
+  );
+}
+
+/* Formulario para unirse con código */
+.joinForm {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.joinForm input {
+  margin: 0;
+}
+
+/* --- Barra de pestañas inferior --- */
+.tabBar {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 10;
+  border-block-start: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tabs li + li {
+  border-inline-start: 1px solid var(--color-border);
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-2) var(--space-3);
+  color: var(--color-text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+/* Ícono encima del texto de cada pestaña */
+.tab::before {
+  content: "";
+  width: 1.75rem;
+  height: 1.75rem;
+  background: var(--icon) center / contain no-repeat;
+  transition: translate var(--transition-fast);
+}
+
+a.tab:hover {
+  background: var(--color-surface-raised);
+  color: var(--color-primary);
+}
+
+a.tab:hover::before {
+  translate: 0 -3px;
+}
+
+/* El buzón todavía no es un enlace: se muestra atenuado */
+li.tab {
+  color: var(--color-text-muted);
+}
+
+li.tab::before {
+  opacity: 0.6;
+}
+
+/* --- Íconos (Kenney Game Icons, CC0) --- */
+.iconMatch {
+  --icon: url("../../../public/icons/massiveMultiplayer.png");
+}
+
+.iconHome {
+  --icon: url("../../../public/icons/home.png");
+}
+
+.iconInbox {
+  --icon: url("../../../public/icons/import.png");
+}
+
+/* --- Escritorio: "Buscar" grande a la izquierda y los otros dos apilados
+   a la derecha --- */
+@media (width >= 48rem) {
+  .lobby {
+    grid-template-columns: 3fr 2fr;
+  }
+
+  .title {
+    grid-column: 1 / -1;
+  }
+
+  .search {
+    grid-row: span 2;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .search h2 {
+    font-size: clamp(1rem, 2vw + 0.4rem, 1.75rem);
+  }
+
+  .search .picture {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    width: 100%;
+  }
+
+  .create {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .create .picture {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    width: 8rem;
+  }
+}
