@@ -4,16 +4,28 @@
    logo centrado y un formulario angosto, como en los wireframes.
    ========================================================================== */
 
-/* --- Barra superior: "Volver al inicio" a la izquierda, menú a la derecha
-   y el logo en su propia fila centrada --- */
+/* --- Encabezado en dos filas:
+   1) barra con la misma altura que el encabezado del resto del sitio,
+      "Volver al inicio" a la izquierda y el menú a la derecha (así el menú
+      no cambia de lugar al entrar a estas páginas);
+   2) el logo centrado en su propia fila. --- */
 .header {
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: var(--header-height) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-  padding: var(--space-3) var(--space-4) 0;
+  column-gap: var(--space-4);
+  padding-inline: var(--space-4);
+  background:
+    linear-gradient(var(--color-border), var(--color-border)) 0
+      var(--header-height) / 100% 1px no-repeat,
+    linear-gradient(var(--color-bg-translucent), var(--color-bg-translucent))
+      top / 100% var(--header-height) no-repeat;
+}
+
+.header > nav {
+  justify-self: end;
 }
 
 .back {
@@ -38,10 +50,10 @@
 
 /* Logo sobre una placa amarilla con una entrada suave */
 .logo {
-  flex-basis: 100%;
-  max-width: min(10rem, 40vw);
-  margin-inline: auto;
-  margin-block-start: var(--space-4);
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(10rem, 40vw);
+  margin-block-start: var(--space-6);
   padding: var(--space-4);
   border-radius: var(--radius-lg);
   background: var(--color-primary);

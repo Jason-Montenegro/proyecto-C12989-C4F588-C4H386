@@ -172,8 +172,9 @@
   --icon: url("../../../public/icons/right.png");
 }
 
-/* --- Cambio a barra horizontal en pantallas anchas --- */
-@media (width >= 64rem) {
+/* --- Cambio a barra horizontal en pantallas anchas: desde 75rem caben los
+   nueve enlaces en una sola fila en todos los encabezados --- */
+@media (width >= 75rem) {
   .desktopList {
     display: flex;
   }
