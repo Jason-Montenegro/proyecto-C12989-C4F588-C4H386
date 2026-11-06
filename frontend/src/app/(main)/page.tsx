@@ -3,14 +3,19 @@ import FeatureSection from "@/app/components/FeatureSection";
 import group from "@/../public/group.png";
 import ranking from "@/../public/ranking.png";
 import speed from "@/../public/speed.png";
+import styles from "./home.module.css";
 
 export default function Home() {
   return (
-    <main>
-      <section>
-        <h1>Hurry to the Top</h1>
-        <video controls>{/* Video con gameplay real pendiente */}</video>
-        <Link href="/ingame">Jugar ahora</Link>
+    <main className={styles.home}>
+      <section className={styles.hero}>
+        <h1 className={styles.title}>Hurry to the Top</h1>
+        <video controls className={styles.video}>
+          {/* Video con gameplay real pendiente */}
+        </video>
+        <Link href="/ingame" className={`button ${styles.heroButton}`}>
+          Jugar ahora
+        </Link>
       </section>
 
       <FeatureSection
@@ -37,7 +42,9 @@ export default function Home() {
           te hacen reaparecer y sube en la tabla de puntuaciones globales para
           demostrar quién es el más veloz.
         </p>
-        <Link href="/ingame">Jugar ahora</Link>
+        <Link href="/ingame" className="button">
+          Jugar ahora
+        </Link>
       </FeatureSection>
 
       <FeatureSection
@@ -52,8 +59,10 @@ export default function Home() {
         </p>
       </FeatureSection>
 
-      <p>
-        <Link href="/ingame">Jugar ahora</Link>
+      <p className={styles.finalCta}>
+        <Link href="/ingame" className={`button ${styles.heroButton}`}>
+          Jugar ahora
+        </Link>
       </p>
     </main>
   );
