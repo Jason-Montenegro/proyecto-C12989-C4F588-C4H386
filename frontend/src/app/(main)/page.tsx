@@ -10,7 +10,7 @@ export default function Home() {
       <section>
         <h1>Hurry to the Top</h1>
         <video controls>{/* Video con gameplay real pendiente */}</video>
-        <Link href="/play">Jugar ahora</Link>
+        <Link href="/ingame">Jugar ahora</Link>
       </section>
 
       <FeatureSection
@@ -37,7 +37,7 @@ export default function Home() {
           te hacen reaparecer y sube en la tabla de puntuaciones globales para
           demostrar quién es el más veloz.
         </p>
-        <Link href="/play">Jugar ahora</Link>
+        <Link href="/ingame">Jugar ahora</Link>
       </FeatureSection>
 
       <FeatureSection
@@ -53,7 +53,7 @@ export default function Home() {
       </FeatureSection>
 
       <p>
-        <Link href="/play">Jugar ahora</Link>
+        <Link href="/ingame">Jugar ahora</Link>
       </p>
     </main>
   );
