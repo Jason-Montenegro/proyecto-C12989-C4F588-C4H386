@@ -1,10 +1,11 @@
 import Link from "next/link";
+import styles from "../auth.module.css";
 
 export default function LoginPage() {
   return (
-    <main>
-      <h1>Iniciar sesión</h1>
-      <form>
+    <main className={styles.main}>
+      <h1 className={styles.title}>Iniciar sesión</h1>
+      <form className={`card ${styles.form}`}>
         <p>
           <label>
             Usuario
@@ -28,7 +29,7 @@ export default function LoginPage() {
           </label>
         </p>
 
-        <nav>
+        <nav className={styles.links}>
           <ul>
             <li>
               <Link href="/register">¿No te has registrado?</Link>
@@ -36,7 +37,9 @@ export default function LoginPage() {
           </ul>
         </nav>
 
-        <button type="button">Ingresar</button>
+        <button type="button" className={styles.submit}>
+          Ingresar
+        </button>
       </form>
     </main>
   );

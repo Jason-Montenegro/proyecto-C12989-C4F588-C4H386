@@ -1,0 +1,105 @@
+/* ==========================================================================
+   Páginas de autenticación (login y registro)
+   Comparten esta hoja porque tienen la misma estructura: barra superior,
+   logo centrado y un formulario angosto, como en los wireframes.
+   ========================================================================== */
+
+/* --- Encabezado en dos filas:
+   1) barra con la misma altura que el encabezado del resto del sitio,
+      "Volver al inicio" a la izquierda y el menú a la derecha (así el menú
+      no cambia de lugar al entrar a estas páginas);
+   2) el logo centrado en su propia fila. --- */
+.header {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: var(--header-height) auto;
+  align-items: center;
+  column-gap: var(--space-4);
+  padding-inline: var(--space-4);
+  background:
+    linear-gradient(var(--color-border), var(--color-border)) 0
+      var(--header-height) / 100% 1px no-repeat,
+    linear-gradient(var(--color-bg-translucent), var(--color-bg-translucent))
+      top / 100% var(--header-height) no-repeat;
+}
+
+.header > nav {
+  justify-self: end;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--touch-target);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back::before {
+  content: "‹";
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: translate var(--transition-fast);
+}
+
+.back:hover::before {
+  translate: -4px 0;
+}
+
+/* Logo sobre una placa amarilla con una entrada suave */
+.logo {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(10rem, 40vw);
+  margin-block-start: var(--space-6);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-primary);
+  box-shadow:
+    0 6px 0 var(--color-primary-shadow),
+    var(--glow-primary);
+  animation: logo-drop 600ms ease-out;
+}
+
+/* --- Contenido --- */
+.main {
+  display: grid;
+  justify-items: center;
+  padding-block-start: var(--space-6);
+}
+
+.title {
+  font-size: clamp(0.9rem, 2vw + 0.4rem, 1.25rem);
+  text-align: center;
+}
+
+.form {
+  width: min(100%, 24rem);
+}
+
+/* Enlaces secundarios bajo los campos */
+.links ul {
+  margin-block-start: var(--space-3);
+  padding: 0;
+  font-size: 0.875rem;
+  list-style: none;
+}
+
+.submit {
+  display: flex;
+  margin: var(--space-6) auto 0;
+}
+
+@keyframes logo-drop {
+  from {
+    opacity: 0;
+    translate: 0 -1rem;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}

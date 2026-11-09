@@ -1,5 +1,6 @@
 import type { StaticImageData } from "next/image";
 import type { ReactNode } from "react";
+import styles from "./FeatureSection.module.css";
 
 type FeatureSectionProps = {
   title: string;
@@ -16,13 +17,20 @@ export default function FeatureSection({
   imageLeft = true,
   children,
 }: FeatureSectionProps) {
-  const picture = <img src={image.src} alt={imageAlt} width={300} />;
+  const picture = (
+    <img
+      src={image.src}
+      alt={imageAlt}
+      width={300}
+      className={`imageFx ${styles.picture}`}
+    />
+  );
 
   return (
-    <section aria-label={title}>
+    <section aria-label={title} className={styles.feature}>
       {imageLeft && picture}
-      <article>
-        <h2>{title}</h2>
+      <article className={`card ${styles.content}`}>
+        <h2 className="cardTitle">{title}</h2>
         {children}
       </article>
       {!imageLeft && picture}
