@@ -1,4 +1,18 @@
 import type { Metadata } from "next";
+import { Inter, Press_Start_2P } from "next/font/google";
+import "@/app/styles/common.css";
+
+const display = Press_Start_2P({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-display",
+});
+
+const body = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+});
+
 export const metadata: Metadata = {
   title: "Hurry to the Top",
   description:
@@ -13,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es">
+    <html lang="es" className={`${display.variable} ${body.variable}`}>
       <body>{children}</body>
     </html>
   );

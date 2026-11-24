@@ -1,0 +1,244 @@
+/* ==========================================================================
+   Página de juego (ingame)
+   Escritorio: pista a la izquierda y HUD a la derecha.
+   Móvil: HUD compacto arriba y la pista debajo.
+   El canvas todavía no se dibuja con JavaScript: su fondo con CSS ambienta
+   la pista (asfalto, bordillos, carriles, meta y salida).
+   ========================================================================== */
+.ingame {
+  display: grid;
+  gap: var(--space-6);
+  width: min(100% - 2 * var(--space-4), 64rem);
+}
+
+/* En móvil el título va primero, antes del HUD */
+.title {
+  order: -2;
+  margin-block-end: 0;
+}
+
+/* Títulos de sección discretos para no competir con la pista */
+.sectionTitle {
+  margin-block-end: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   Pista
+   -------------------------------------------------------------------------- */
+.trackArea {
+  display: grid;
+  justify-items: center;
+}
+
+.track {
+  /* Colores propios de la pista */
+  --track-asphalt: #2b2b40;
+  --track-asphalt-dark: #1f1f30;
+  --track-line: rgb(244 244 248 / 35%);
+  --track-curb-a: var(--color-danger);
+  --track-curb-b: var(--color-text);
+
+  /* Proporción 9:16 de la pista; cabe en la pantalla sin deformarse */
+  width: min(100%, 540px, (100dvh - 9rem) * 9 / 16);
+  aspect-ratio: 9 / 16;
+  border: 4px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background:
+    /* Franja de meta a cuadros (arriba) */
+    url("../../../../public/assets/meta.png") top / 4rem 4rem repeat-x,
+    /* Línea de salida (abajo) */
+    linear-gradient(var(--track-curb-b), var(--track-curb-b)) left 0 bottom
+      3rem / 100% 0.5rem no-repeat,
+    /* Bordillos rojo y blanco a los costados */
+    repeating-linear-gradient(
+        180deg,
+        var(--track-curb-a) 0 1.5rem,
+        var(--track-curb-b) 1.5rem 3rem
+      )
+      left / 0.75rem 100% no-repeat,
+    repeating-linear-gradient(
+        180deg,
+        var(--track-curb-b) 0 1.5rem,
+        var(--track-curb-a) 1.5rem 3rem
+      )
+      right / 0.75rem 100% no-repeat,
+    /* Líneas discontinuas de carril */
+    repeating-linear-gradient(
+        180deg,
+        var(--track-line) 0 2rem,
+        transparent 2rem 4rem
+      )
+      33.3% 0 / 4px 100% no-repeat,
+    repeating-linear-gradient(
+        180deg,
+        var(--track-line) 0 2rem,
+        transparent 2rem 4rem
+      )
+      66.6% 0 / 4px 100% no-repeat,
+    /* Asfalto */
+    linear-gradient(180deg, var(--track-asphalt), var(--track-asphalt-dark));
+  box-shadow: var(--shadow-card);
+  animation: track-glow 3s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   HUD
+   -------------------------------------------------------------------------- */
+.hud {
+  display: grid;
+  gap: var(--space-6);
+  align-content: start;
+  order: -1;
+  min-width: 0;
+  padding: var(--space-4);
+}
+
+.hud h3 {
+  color: var(--color-primary);
+}
+
+/* En pantallas muy angostas la tabla se desliza dentro de su sección en
+   lugar de ensanchar la página */
+.hud > section {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+/* Marcador: etiqueta a la izquierda y valor a la derecha; si falta espacio,
+   es la etiqueta la que pasa a dos líneas */
+.stats {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin: 0;
+}
+
+.stats dt,
+.stats dd {
+  padding-block: var(--space-2);
+  border-block-end: 1px dashed var(--color-border);
+}
+
+.stats dt {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.stats dd {
+  margin: 0;
+  padding-inline-start: var(--space-3);
+  font-weight: 600;
+  text-align: end;
+}
+
+/* Tiempo destacado como cronómetro de arcade */
+.time {
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.lives {
+  color: var(--color-accent);
+}
+
+.penalty {
+  color: var(--color-danger);
+}
+
+/* Indicador de impulso activo: insignia amarilla con brillo pulsante */
+.boost {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  animation: boost-pulse 1s ease-in-out infinite;
+}
+
+/* --- Tabla de posiciones --- */
+.standings td:first-child {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+}
+
+/* Fila del jugador actual: borde y negrita además del color */
+.currentPlayer {
+  background: rgb(255 194 51 / 12%);
+  box-shadow: inset 4px 0 0 var(--color-primary);
+  font-weight: 700;
+}
+
+.racing {
+  color: var(--color-accent);
+}
+
+.respawning {
+  color: var(--color-danger);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   Opciones de partida
+   -------------------------------------------------------------------------- */
+.options ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   Escritorio: pista y HUD lado a lado
+   -------------------------------------------------------------------------- */
+@media (width >= 56rem) {
+  .ingame {
+    grid-template-columns: auto minmax(20rem, 24rem);
+    justify-content: center;
+    align-items: start;
+  }
+
+  .title,
+  .options {
+    grid-column: 1 / -1;
+  }
+
+  .hud {
+    order: initial;
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-4));
+    padding: var(--space-6);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Animaciones
+   -------------------------------------------------------------------------- */
+@keyframes track-glow {
+  0%,
+  100% {
+    box-shadow: var(--shadow-card);
+  }
+
+  50% {
+    box-shadow: var(--shadow-card), var(--glow-primary);
+  }
+}
+
+@keyframes boost-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(255 194 51 / 0%);
+  }
+
+  50% {
+    box-shadow: var(--glow-primary);
+  }
+}

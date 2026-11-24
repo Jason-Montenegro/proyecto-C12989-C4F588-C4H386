@@ -4,8 +4,9 @@
   "description": "El juego consiste en una competición entre 2 y 10 jugadores que compiten por llegar al final de un circuito de obstáculos. Deberán partir del mismo lugar y evitar colisionar con obstáculos en el camino. El juego pretende ser jugable desde navegadores web, ya sea de escritorio o móviles. Esta basado en partidas multijugador respaldadas por un servidor que gestione el estado de las partidas del juego centralizadamente.",
   "scripts": {
     "check": "npm run lint && npm run format:check",
-    "lint": "npm run lint:frontend",
+    "lint": "npm run lint:frontend && npm run lint:css",
     "lint:frontend": "npm run lint --prefix frontend",
+    "lint:css": "npm run lint:css --prefix frontend",
     "format:check": "prettier . --check",
     "format": "prettier . --write"
   },

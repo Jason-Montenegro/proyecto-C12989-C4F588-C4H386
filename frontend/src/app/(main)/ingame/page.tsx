@@ -1,13 +1,16 @@
 import Link from "next/link";
+import styles from "./ingame.module.css";
 
 export default function InGamePage() {
   return (
-    <main>
-      <h1>Partida en curso</h1>
+    <main className={styles.ingame}>
+      <h1 className={styles.title}>Partida en curso</h1>
 
-      <section aria-labelledby="circuito">
-        <h2 id="circuito">Circuito de obstáculos</h2>
-        <canvas width={540} height={960}>
+      <section aria-labelledby="circuito" className={styles.trackArea}>
+        <h2 id="circuito" className={styles.sectionTitle}>
+          Circuito de obstáculos
+        </h2>
+        <canvas width={540} height={960} className={styles.track}>
           <p>
             Tu navegador no soporta el elemento canvas, necesario para mostrar
             el circuito, los obstáculos y los demás jugadores. Actualiza tu
@@ -16,26 +19,30 @@ export default function InGamePage() {
         </canvas>
       </section>
 
-      <aside aria-labelledby="hud">
-        <h2 id="hud">Estado de la partida</h2>
+      <aside aria-labelledby="hud" className={`card ${styles.hud}`}>
+        <h2 id="hud" className={styles.sectionTitle}>
+          Estado de la partida
+        </h2>
 
         <section aria-labelledby="hud-jugador">
           <h3 id="hud-jugador">Tu carrera</h3>
-          <dl>
+          <dl className={styles.stats}>
             <dt>Jugador</dt>
             <dd>RaulG</dd>
             <dt>Tiempo</dt>
-            <dd>
+            <dd className={styles.time}>
               <time dateTime="PT1M23.45S">01:23.45</time>
             </dd>
             <dt>Vidas</dt>
-            <dd>2 de 3</dd>
+            <dd className={styles.lives}>2 de 3</dd>
             <dt>Penalización acumulada</dt>
-            <dd>
+            <dd className={styles.penalty}>
               <time dateTime="PT5S">+00:05.00</time>
             </dd>
             <dt>Efecto activo</dt>
-            <dd>Impulso de velocidad (2 s)</dd>
+            <dd>
+              <span className={styles.boost}>Impulso de velocidad (2 s)</span>
+            </dd>
             <dt>Posición</dt>
             <dd>2 de 4</dd>
           </dl>
@@ -43,7 +50,7 @@ export default function InGamePage() {
 
         <section aria-labelledby="hud-posiciones">
           <h3 id="hud-posiciones">Tabla de posiciones</h3>
-          <table>
+          <table className={`compactTable ${styles.standings}`}>
             <caption>Posiciones en tiempo real de la sala</caption>
             <thead>
               <tr>
@@ -56,35 +63,39 @@ export default function InGamePage() {
               <tr>
                 <td>1</td>
                 <td>LauraF</td>
-                <td>En carrera</td>
+                <td className={styles.racing}>En carrera</td>
               </tr>
-              <tr>
+              <tr className={styles.currentPlayer}>
                 <td>2</td>
                 <td>RaulG</td>
-                <td>En carrera</td>
+                <td className={styles.racing}>En carrera</td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>CelsoG</td>
-                <td>Reapareciendo</td>
+                <td className={styles.respawning}>Reapareciendo</td>
               </tr>
               <tr>
                 <td>4</td>
                 <td>RodrigoC</td>
-                <td>En carrera</td>
+                <td className={styles.racing}>En carrera</td>
               </tr>
             </tbody>
           </table>
         </section>
       </aside>
 
-      <nav aria-label="Opciones de partida">
+      <nav aria-label="Opciones de partida" className={styles.options}>
         <ul>
           <li>
-            <Link href="/results">Ver resultados</Link>
+            <Link href="/results" className="button">
+              Ver resultados
+            </Link>
           </li>
           <li>
-            <Link href="/">Abandonar partida</Link>
+            <Link href="/" className="button buttonSecondary">
+              Abandonar partida
+            </Link>
           </li>
         </ul>
       </nav>

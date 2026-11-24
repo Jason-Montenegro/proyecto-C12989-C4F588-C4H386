@@ -1,8 +1,10 @@
+import styles from "../auth.module.css";
+
 export default function RegisterPage() {
   return (
-    <main>
-      <h1>Registrarse</h1>
-      <form>
+    <main className={styles.main}>
+      <h1 className={styles.title}>Registrarse</h1>
+      <form className={`card ${styles.form}`}>
         <p>
           <label>
             Usuario
@@ -43,7 +45,9 @@ export default function RegisterPage() {
           </label>
         </p>
 
-        <button type="button">Registrarse</button>
+        <button type="button" className={styles.submit}>
+          Registrarse
+        </button>
       </form>
     </main>
   );

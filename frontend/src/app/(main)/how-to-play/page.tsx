@@ -1,8 +1,10 @@
+import styles from "./how-to-play.module.css";
+
 export default function HowToPlayPage() {
   return (
-    <main>
-      <article>
-        <h1>Cómo jugar</h1>
+    <main className={styles.layout}>
+      <article className="card">
+        <h1 className="cardTitle">Cómo jugar</h1>
         <p>
           El objetivo es llegar al final del circuito antes que los demás
           jugadores. Todos parten de la misma línea de salida, y en cuanto el
@@ -21,25 +23,25 @@ export default function HowToPlayPage() {
         </p>
       </article>
 
-      <video controls>
+      <video controls className={styles.video}>
         {/* Video explicativo con gameplay real pendiente */}
       </video>
 
-      <aside>
-        <h2>Extras</h2>
-        <p>
+      <aside className="card">
+        <h2 className="cardTitle">Extras</h2>
+        <p className={`${styles.extra} ${styles.boost}`}>
           <strong>Plataformas de impulso:</strong> al pasar sobre una, tu
           personaje recibe un aumento de velocidad durante 2 segundos. Mientras
           dure, las reglas de colisión son las mismas: puedes rebotar o morir si
           tocas un obstáculo peligroso.
         </p>
-        <p>
+        <p className={`${styles.extra} ${styles.slow}`}>
           <strong>Terreno lento:</strong> en ciertas zonas del circuito tu
           velocidad se reduce mientras permanezcas dentro, y vuelve a la
           normalidad apenas salgas. Afecta a todos por igual, así que decide si
           vale la pena cruzarlas o buscar otra ruta.
         </p>
-        <p>
+        <p className={`${styles.extra} ${styles.camera}`}>
           <strong>La cámara:</strong> avanza a ritmo constante y sigue al
           jugador que va al frente. Si te quedas atrás y el borde inferior del
           mapa te alcanza, mueres y recibes una penalización de tiempo en tu

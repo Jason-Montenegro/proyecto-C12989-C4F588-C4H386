@@ -6,10 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:css": "stylelint \"src/**/*.css\""
   },
   "dependencies": {
-    "next": "16.4.0",
+    "next": "^16.4.5",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
@@ -18,8 +19,10 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.4.0",
+    "eslint-config-next": "^16.4.5",
     "eslint-config-prettier": "^10.1.8",
+    "stylelint": "^18.0.0",
+    "stylelint-config-standard": "^41.0.0",
     "typescript": "^5"
   }
 }
