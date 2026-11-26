@@ -90,6 +90,74 @@ const OBSTACULOS = [
   { tipo: "agujero", x: 40, y: 3700, ancho: 80, alto: 80 },
   { tipo: "agujero", x: 420, y: 3700, ancho: 80, alto: 80 },
   { tipo: "muro", x: 200, y: 3950, ancho: 140, alto: 40 },
+  // Tramo 7: slalom entre cajas que barren la pista y un muro central.
+  {
+    tipo: "caja",
+    x: 60,
+    y: 4350,
+    ancho: 60,
+    alto: 60,
+    movimiento: { eje: "x", amplitud: 200, periodoMs: 2200 },
+  },
+  { tipo: "muro", x: 140, y: 4650, ancho: 260, alto: 40 },
+  { tipo: "rebotador", x: 30, y: 4660, ancho: 50, alto: 50 },
+  { tipo: "rebotador", x: 460, y: 4660, ancho: 50, alto: 50 },
+  // Tramo 8: pasillo de sierras con una sierra que cruza de lado a lado.
+  { tipo: "sierra", x: 40, y: 5000, ancho: 40, alto: 40 },
+  { tipo: "sierra", x: 460, y: 5000, ancho: 40, alto: 40 },
+  {
+    tipo: "sierra",
+    x: 250,
+    y: 5200,
+    ancho: 40,
+    alto: 40,
+    movimiento: { eje: "x", amplitud: 190, periodoMs: 3200 },
+  },
+  // Tramo 9: zigzag de muros con un agujero a la salida de cada hueco.
+  { tipo: "muro", x: 0, y: 5800, ancho: 360, alto: 40 },
+  { tipo: "agujero", x: 420, y: 5960, ancho: 80, alto: 80 },
+  { tipo: "muro", x: 180, y: 6150, ancho: 360, alto: 40 },
+  { tipo: "agujero", x: 40, y: 6300, ancho: 80, alto: 80 },
+  // Tramo 10: campo de agujeros.
+  { tipo: "agujero", x: 100, y: 6550, ancho: 80, alto: 80 },
+  { tipo: "agujero", x: 360, y: 6550, ancho: 80, alto: 80 },
+  { tipo: "agujero", x: 230, y: 6750, ancho: 80, alto: 80 },
+  { tipo: "agujero", x: 40, y: 6950, ancho: 80, alto: 80 },
+  { tipo: "agujero", x: 420, y: 6950, ancho: 80, alto: 80 },
+  // Tramo 11: recta final con cajas cruzadas y sierras que suben y bajan.
+  {
+    tipo: "caja",
+    x: 60,
+    y: 7300,
+    ancho: 60,
+    alto: 60,
+    movimiento: { eje: "x", amplitud: 180, periodoMs: 2000 },
+  },
+  {
+    tipo: "caja",
+    x: 420,
+    y: 7480,
+    ancho: 60,
+    alto: 60,
+    movimiento: { eje: "x", amplitud: -180, periodoMs: 2000 },
+  },
+  {
+    tipo: "sierra",
+    x: 150,
+    y: 7700,
+    ancho: 40,
+    alto: 40,
+    movimiento: { eje: "y", amplitud: 70, periodoMs: 1500 },
+  },
+  {
+    tipo: "sierra",
+    x: 350,
+    y: 7760,
+    ancho: 40,
+    alto: 40,
+    movimiento: { eje: "y", amplitud: 70, periodoMs: 1500 },
+  },
+  { tipo: "muro", x: 200, y: 7900, ancho: 140, alto: 40 },
 ];
 
 /**
@@ -103,6 +171,12 @@ const ZONAS = [
   { tipo: "lento", x: 0, y: 2950, ancho: 300, alto: 180 },
   { tipo: "impulso", x: 380, y: 3000, ancho: 100, alto: 80 },
   { tipo: "lento", x: 140, y: 3550, ancho: 260, alto: 120 },
+  { tipo: "impulso", x: 220, y: 4480, ancho: 100, alto: 80 },
+  { tipo: "lento", x: 120, y: 5350, ancho: 420, alto: 220 },
+  { tipo: "impulso", x: 20, y: 5420, ancho: 100, alto: 80 },
+  { tipo: "lento", x: 0, y: 6400, ancho: 540, alto: 100 },
+  { tipo: "impulso", x: 220, y: 7050, ancho: 100, alto: 80 },
+  { tipo: "lento", x: 0, y: 7580, ancho: 200, alto: 160 },
 ];
 
 /**
@@ -136,7 +210,7 @@ function completarZona(definicion, indice) {
  */
 export const CIRCUITO_1 = {
   ancho: ANCHO_MUNDO,
-  metaY: 4300,
+  metaY: 8100,
   obstaculos: OBSTACULOS.map(completarObstaculo),
   zonas: ZONAS.map(completarZona),
 };
