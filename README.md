@@ -125,7 +125,18 @@ Ingresar al directorio del proyecto
 cd proyecto-C12989-C4F588-C4H386
 ```
 
-Iniciar el contenedor de Docker
+Crear los archivos de variables de entorno a partir de los ejemplos
+
+```bash
+cp ".env example" .env
+cp backend/.env.example backend/.env
+```
+
+Abrir `backend/.env` y asignar un valor secreto a `JWT_SECRET` y elegir
+`development` o `production` en `NODE_ENV`. En el `.env` de la raíz, elegir
+también el valor de `NODE_ENV`.
+
+Iniciar los contenedores de Docker (cliente y servidor)
 
 ```bash
 docker compose up --build -d
@@ -134,10 +145,18 @@ docker compose up --build -d
 Para acceder al cliente, abrir un navegador web y dirigirse a la siguiente URL:
 
 ```bash
-http://localhost:8080
+http://localhost:8081
 ```
 
-Para detener el contenedor, presionar `Ctrl + C` y luego ejecutar:
+El servidor queda disponible en la siguiente URL:
+
+```bash
+http://localhost:8082/api/v1
+```
+
+Los usuarios registrados se guardan en `backend/db/users.json`.
+
+Para detener los contenedores, presionar `Ctrl + C` y luego ejecutar:
 
 ```bash
 docker compose down
@@ -154,6 +173,9 @@ Para ver la salida de un contenedor en ejecución, ejecutar:
 ```bash
 docker logs -f <nombre_del_contenedor>
 ```
+
+Los contenedores se llaman `httt-frontend` (cliente) y `httt-backend`
+(servidor).
 
 ## Metodologia de desarrollo
 
