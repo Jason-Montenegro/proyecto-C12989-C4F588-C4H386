@@ -1,4 +1,9 @@
-import { ALTO_VISTA, ANCHO_MUNDO, RADIO_JUGADOR } from "../../constantes.js";
+import {
+  ALTO_VISTA,
+  ANCHO_MUNDO,
+  ATURDIMIENTO_MS,
+  RADIO_JUGADOR,
+} from "../../constantes.js";
 import { alturaAPantalla } from "../coordenadas.js";
 import { dibujarAvatar } from "./avatar.js";
 
@@ -13,6 +18,9 @@ const COPIAS_ESTELA = 3;
 const SEPARACION_ESTELA = 12;
 const TINTE_LENTO = "rgb(107 74 43 / 55%)";
 const TAMANO_CRUZ = 8;
+
+/** Cuántos ms tarda el anillo de aturdimiento en avanzar una unidad. */
+const GIRO_ATURDIDO_MS = 20;
 
 /**
  * Mientras el jugador está muerto, lo dibuja parpadeando en el centro de
@@ -77,6 +85,35 @@ function calcularDireccionContraria(jugador) {
   const dy = jugador.y - jugador.destino.y;
   const largo = Math.hypot(dx, dy);
   return largo > 0 ? { x: dx / largo, y: dy / largo } : { x: 0, y: -1 };
+}
+
+/**
+ * Anillo discontinuo que gira alrededor del jugador aturdido; se achica a
+ * medida que se le pasa el aturdimiento.
+ * @param {CanvasRenderingContext2D} contexto Contexto del canvas.
+ * @param {Vector2} centro Centro del avatar en el canvas.
+ * @param {number} aturdidoMs Ms de aturdimiento que le quedan.
+ * @param {Paleta} paleta Colores del render.
+ * @returns {void}
+ */
+export function dibujarAturdimiento(contexto, centro, aturdidoMs, paleta) {
+  const restante = Math.min(aturdidoMs / ATURDIMIENTO_MS, 1);
+  contexto.save();
+  contexto.globalAlpha = 1;
+  contexto.strokeStyle = paleta.peligro;
+  contexto.lineWidth = 3;
+  contexto.setLineDash([6, 6]);
+  contexto.lineDashOffset = aturdidoMs / GIRO_ATURDIDO_MS;
+  contexto.beginPath();
+  contexto.arc(
+    centro.x,
+    centro.y,
+    RADIO_JUGADOR + 4 + restante * 8,
+    0,
+    2 * Math.PI,
+  );
+  contexto.stroke();
+  contexto.restore();
 }
 
 /**

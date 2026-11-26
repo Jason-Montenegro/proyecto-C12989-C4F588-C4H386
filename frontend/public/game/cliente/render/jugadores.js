@@ -2,6 +2,7 @@ import { RADIO_JUGADOR } from "../../constantes.js";
 import { alturaAPantalla } from "../coordenadas.js";
 import { dibujarAvatar } from "./avatar.js";
 import {
+  dibujarAturdimiento,
   dibujarEstela,
   dibujarFantasmaReaparicion,
   dibujarMarcaLocal,
@@ -14,6 +15,8 @@ import {
 /** @typedef {import("./paleta.js").Paleta} Paleta */
 
 const OPACIDAD_TERMINADO = 0.5;
+const OPACIDAD_ATURDIDO = 0.35;
+const PARPADEO_ATURDIDO_MS = 120;
 const SEPARACION_NOMBRE = 8;
 
 /**
@@ -48,8 +51,7 @@ function dibujarJugador(contexto, jugador, estado, paleta) {
   const centro = { x: jugador.x, y: alturaAPantalla(jugador.y, estado.camara) };
   const esLocal = jugador.id === estado.jugadorLocalId;
   contexto.save();
-  contexto.globalAlpha =
-    jugador.estado === "terminado" ? OPACIDAD_TERMINADO : 1;
+  contexto.globalAlpha = calcularOpacidad(jugador);
   if (jugador.impulsoMs > 0) {
     dibujarEstela(contexto, jugador, estado.camara, paleta);
   }
@@ -57,11 +59,28 @@ function dibujarJugador(contexto, jugador, estado, paleta) {
   if (jugador.enTerrenoLento) {
     dibujarTinteLento(contexto, centro);
   }
+  if (jugador.aturdidoMs > 0) {
+    dibujarAturdimiento(contexto, centro, jugador.aturdidoMs, paleta);
+  }
   if (esLocal) {
     dibujarMarcaLocal(contexto, jugador, estado.camara, paleta);
   }
   dibujarNombre(contexto, jugador.nombre, centro, paleta);
   contexto.restore();
+}
+
+/**
+ * Opacidad del jugador: tenue si ya terminó y parpadeante mientras está
+ * aturdido tras reaparecer.
+ * @param {Jugador} jugador Jugador a dibujar.
+ * @returns {number} Opacidad entre 0 y 1.
+ */
+function calcularOpacidad(jugador) {
+  if (jugador.estado === "terminado") {
+    return OPACIDAD_TERMINADO;
+  }
+  const apagado = Math.floor(jugador.aturdidoMs / PARPADEO_ATURDIDO_MS) % 2;
+  return jugador.aturdidoMs > 0 && apagado === 1 ? OPACIDAD_ATURDIDO : 1;
 }
 
 /**
