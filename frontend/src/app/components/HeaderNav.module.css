@@ -1,10 +1,5 @@
-/* ==========================================================================
-   Menú de navegación principal
-   Escritorio: barra horizontal. Móvil: menú hamburguesa con <details>,
-   desplegado en filas con ícono, texto y flecha (según el wireframe móvil).
-   ========================================================================== */
 
-/* --- Enlaces (comunes a ambas versiones) --- */
+
 .link {
   display: flex;
   align-items: center;
@@ -26,7 +21,6 @@
   color: var(--color-primary);
 }
 
-/* Llamada a la acción "Jugar ahora", destacada como en el wireframe */
 .cta {
   background: var(--color-primary);
   color: var(--color-on-primary);
@@ -42,7 +36,6 @@
   color: var(--color-on-primary);
 }
 
-/* --- Versión escritorio --- */
 .desktopList {
   display: none;
   align-items: center;
@@ -51,7 +44,6 @@
   list-style: none;
 }
 
-/* --- Versión móvil: botón hamburguesa --- */
 .mobileMenu {
   position: relative;
 }
@@ -77,8 +69,6 @@
   background-color: var(--color-surface-raised);
 }
 
-/* --- Versión móvil: lista desplegada bajo el botón, alineada a la derecha
-   (así funciona igual en todos los encabezados del sitio) --- */
 .mobileList {
   position: absolute;
   inset-inline-end: 0;
@@ -104,7 +94,6 @@
   text-transform: uppercase;
 }
 
-/* Ícono a la izquierda de cada fila */
 .mobileList .link::before {
   content: "";
   flex-shrink: 0;
@@ -113,7 +102,6 @@
   background: var(--icon) center / contain no-repeat;
 }
 
-/* Flecha a la derecha de cada fila */
 .mobileList .link::after {
   content: "›";
   margin-inline-start: auto;
@@ -130,12 +118,10 @@
   color: var(--color-on-primary);
 }
 
-/* El ícono de "Jugar ahora" va oscuro sobre el fondo amarillo */
 .mobileList .cta::before {
   filter: invert(1);
 }
 
-/* --- Íconos (Kenney Game Icons, CC0) --- */
 .iconHome {
   --icon: url("../../../public/icons/home.png");
 }
@@ -172,8 +158,6 @@
   --icon: url("../../../public/icons/right.png");
 }
 
-/* --- Cambio a barra horizontal en pantallas anchas: desde 75rem caben los
-   nueve enlaces en una sola fila en todos los encabezados --- */
 @media (width >= 75rem) {
   .desktopList {
     display: flex;

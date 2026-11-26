@@ -1,6 +1,5 @@
-/* ==========================================================================
-   Pie de página: franja inferior con la información del proyecto
-   ========================================================================== */
+
+
 .footer {
   padding: var(--space-6) var(--space-4);
   border-block-start: 1px solid var(--color-border);

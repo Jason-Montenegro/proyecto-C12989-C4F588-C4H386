@@ -1,23 +1,25 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import icon from "@/../public/icon.svg";
 import group from "@/../public/group.png";
 import HeaderNav from "@/app/components/HeaderNav";
+import { useAuth } from "@/app/components/AuthProvider";
 import styles from "./lobby.module.css";
 
 export default function LobbyPage() {
+  const { user } = useAuth();
+  const router = useRouter();
+
   return (
     <>
       <header className={styles.header}>
         <Link href="/" className={styles.logo}>
           <img src={icon.src} alt="Hurry to the Top" width={64} height={64} />
         </Link>
-        <p className={styles.player}>PlayerName</p>
         <HeaderNav />
-        <nav aria-label="Cuenta del jugador">
-          <Link href="/login" className="button buttonSecondary">
-            Mi cuenta
-          </Link>
-        </nav>
+        <p className={styles.player}>{user?.username}</p>
       </header>
 
       <main className={styles.lobby}>
@@ -32,7 +34,9 @@ export default function LobbyPage() {
             height={300}
             className={`imageFx ${styles.picture}`}
           />
-          <button type="button">Buscar</button>
+          <button type="button" disabled>
+            Buscar
+          </button>
         </section>
 
         <section className={`card ${styles.panel} ${styles.join}`}>
@@ -44,8 +48,11 @@ export default function LobbyPage() {
               id="codigo-partida"
               name="codigo-partida"
               required
+              disabled
             />
-            <button type="button">Unirse</button>
+            <button type="button" disabled>
+              Unirse
+            </button>
           </form>
         </section>
 
@@ -58,7 +65,9 @@ export default function LobbyPage() {
             height={180}
             className={`imageFx ${styles.picture}`}
           />
-          <button type="button">Crear</button>
+          <button type="button" onClick={() => router.push("/ingame")}>
+            Crear
+          </button>
         </section>
       </main>
 

@@ -1,7 +1,5 @@
-/* ==========================================================================
-   Sección de característica de la landing: imagen + tarjeta de texto.
-   En móvil la imagen siempre va arriba; en escritorio se alternan los lados.
-   ========================================================================== */
+
+
 .feature {
   display: flex;
   flex-direction: column;
@@ -10,8 +8,6 @@
   margin: var(--space-12) auto;
 }
 
-/* Las ilustraciones son siluetas oscuras: se muestran sobre un panel
-   amarillo para que contrasten con el fondo del sitio */
 .picture {
   order: -1;
   width: 100%;
@@ -26,8 +22,6 @@
   );
 }
 
-/* Tarjeta de texto centrado; el título ocupa todo el ancho para que su
-   línea inferior cruce la tarjeta */
 .content {
   display: grid;
   justify-items: center;

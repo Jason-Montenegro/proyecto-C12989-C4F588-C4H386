@@ -13,7 +13,7 @@ export default function Home() {
         <video controls className={styles.video}>
           {/* Video con gameplay real pendiente */}
         </video>
-        <Link href="/ingame" className={`button ${styles.heroButton}`}>
+        <Link href="/lobby" className={`button ${styles.heroButton}`}>
           Jugar ahora
         </Link>
       </section>
@@ -42,7 +42,7 @@ export default function Home() {
           te hacen reaparecer y sube en la tabla de puntuaciones globales para
           demostrar quién es el más veloz.
         </p>
-        <Link href="/ingame" className="button">
+        <Link href="/lobby" className="button">
           Jugar ahora
         </Link>
       </FeatureSection>
@@ -60,7 +60,7 @@ export default function Home() {
       </FeatureSection>
 
       <p className={styles.finalCta}>
-        <Link href="/ingame" className={`button ${styles.heroButton}`}>
+        <Link href="/lobby" className={`button ${styles.heroButton}`}>
           Jugar ahora
         </Link>
       </p>

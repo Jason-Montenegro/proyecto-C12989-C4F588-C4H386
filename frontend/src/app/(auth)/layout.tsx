@@ -1,5 +1,6 @@
 import Link from "next/link";
 import HeaderNav from "@/app/components/HeaderNav";
+import RequireAuth from "@/app/components/RequireAuth";
 import icon from "@/../public/icon.svg";
 import styles from "./auth.module.css";
 
@@ -19,7 +20,7 @@ export default function AuthLayout({ children }: LayoutProps<"/">) {
           className={styles.logo}
         />
       </header>
-      {children}
+      <RequireAuth allow="guest">{children}</RequireAuth>
     </>
   );
 }

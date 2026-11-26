@@ -1,15 +1,11 @@
-/* ==========================================================================
-   Página "Cómo jugar"
-   Escritorio: tres columnas (instrucciones, video vertical, extras).
-   Móvil: las tres piezas apiladas.
-   ========================================================================== */
+
+
 .layout {
   display: grid;
   gap: var(--space-6);
   align-items: start;
 }
 
-/* --- Video vertical, con las proporciones de la pista del juego --- */
 .video {
   justify-self: center;
   width: min(100%, 22rem);
@@ -20,8 +16,6 @@
   box-shadow: var(--shadow-card), var(--glow-primary);
 }
 
-/* --- Extras: cada uno marcado con una barra lateral y su etiqueta en
-   negrita, así no depende solo del color --- */
 .extra {
   padding-inline-start: var(--space-3);
   border-inline-start: 4px solid var(--extra-color);

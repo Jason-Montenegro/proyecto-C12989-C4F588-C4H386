@@ -1,8 +1,5 @@
-/* ==========================================================================
-   Página de resultados
-   El modal del ganador se muestra centrado sobre la página, con un velo
-   oscuro detrás; abajo quedan la clasificación y las opciones.
-   ========================================================================== */
+
+
 .results {
   display: grid;
   gap: var(--space-6);
@@ -14,11 +11,6 @@
   text-align: center;
 }
 
-/* --------------------------------------------------------------------------
-   Modal del ganador
-   Un <dialog> no modal no tiene ::backdrop, así que el velo se logra con una
-   sombra que cubre toda la pantalla alrededor del modal.
-   -------------------------------------------------------------------------- */
 .winner {
   position: fixed;
   inset: 0;
@@ -45,7 +37,6 @@
   animation: winner-pop 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* El avatar del ganador rebota una vez, como al cruzar la meta */
 .avatar {
   width: 4rem;
   padding: var(--space-2);
@@ -70,15 +61,11 @@
   color: var(--color-accent);
 }
 
-/* --------------------------------------------------------------------------
-   Clasificación
-   -------------------------------------------------------------------------- */
 .standings td:first-child {
   font-family: var(--font-heading);
   font-size: 0.75rem;
 }
 
-/* Primer lugar: borde dorado y negrita, no solo color */
 .first {
   background: rgb(255 194 51 / 12%);
   box-shadow: inset 4px 0 0 var(--color-primary);
@@ -94,9 +81,6 @@
   font-style: italic;
 }
 
-/* --------------------------------------------------------------------------
-   Opciones
-   -------------------------------------------------------------------------- */
 .options ul {
   display: flex;
   flex-wrap: wrap;
@@ -106,9 +90,6 @@
   list-style: none;
 }
 
-/* --------------------------------------------------------------------------
-   Animaciones
-   -------------------------------------------------------------------------- */
 @keyframes winner-pop {
   from {
     opacity: 0;

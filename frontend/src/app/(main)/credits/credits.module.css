@@ -1,6 +1,5 @@
-/* ==========================================================================
-   Página de créditos: tarjeta centrada con un bloque por tipo de recurso
-   ========================================================================== */
+
+
 .page {
   display: grid;
   place-items: center;
@@ -10,7 +9,6 @@
   width: min(100%, 56rem);
 }
 
-/* --- Bloques de créditos --- */
 .group + .group {
   margin-block-start: var(--space-8);
 }
@@ -19,7 +17,6 @@
   font-size: 0.8rem;
 }
 
-/* Viñetas con forma de flecha de juego */
 .list {
   padding-inline-start: var(--space-6);
   list-style: "▸ ";
@@ -33,7 +30,6 @@
   margin-block-start: var(--space-2);
 }
 
-/* --- Enlace al repositorio --- */
 .repo {
   margin-block-start: var(--space-8);
   text-align: center;

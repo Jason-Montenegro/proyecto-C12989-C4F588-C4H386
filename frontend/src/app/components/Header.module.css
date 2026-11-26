@@ -1,7 +1,5 @@
-/* ==========================================================================
-   Encabezado del sitio: logo a la izquierda y menú a la derecha.
-   Queda fijo arriba al hacer scroll.
-   ========================================================================== */
+
+
 .header {
   position: sticky;
   top: 0;
@@ -17,8 +15,6 @@
   backdrop-filter: blur(8px);
 }
 
-/* Logo sobre una placa amarilla (el SVG es oscuro) con un pequeño giro
-   al pasar el puntero */
 .logo {
   padding: var(--space-1);
   border-radius: var(--radius-sm);

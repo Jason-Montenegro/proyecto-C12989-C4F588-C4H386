@@ -93,7 +93,7 @@ export default function InGamePage() {
             </Link>
           </li>
           <li>
-            <Link href="/" className="button buttonSecondary">
+            <Link href="/lobby" className="button buttonSecondary">
               Abandonar partida
             </Link>
           </li>

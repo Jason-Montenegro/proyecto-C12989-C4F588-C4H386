@@ -2,8 +2,12 @@ import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+
   output: "export",
+
+  env: {
+    API_URL: process.env.API_URL ?? "http://localhost:8082/api/v1",
+  },
   basePath:
     process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test"
       ? ""

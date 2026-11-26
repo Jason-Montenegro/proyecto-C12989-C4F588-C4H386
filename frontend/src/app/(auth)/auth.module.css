@@ -1,14 +1,5 @@
-/* ==========================================================================
-   Páginas de autenticación (login y registro)
-   Comparten esta hoja porque tienen la misma estructura: barra superior,
-   logo centrado y un formulario angosto, como en los wireframes.
-   ========================================================================== */
 
-/* --- Encabezado en dos filas:
-   1) barra con la misma altura que el encabezado del resto del sitio,
-      "Volver al inicio" a la izquierda y el menú a la derecha (así el menú
-      no cambia de lugar al entrar a estas páginas);
-   2) el logo centrado en su propia fila. --- */
+
 .header {
   position: relative;
   display: grid;
@@ -48,7 +39,6 @@
   translate: -4px 0;
 }
 
-/* Logo sobre una placa amarilla con una entrada suave */
 .logo {
   grid-column: 1 / -1;
   justify-self: center;
@@ -63,7 +53,6 @@
   animation: logo-drop 600ms ease-out;
 }
 
-/* --- Contenido --- */
 .main {
   display: grid;
   justify-items: center;
@@ -79,7 +68,6 @@
   width: min(100%, 24rem);
 }
 
-/* Enlaces secundarios bajo los campos */
 .links ul {
   margin-block-start: var(--space-3);
   padding: 0;

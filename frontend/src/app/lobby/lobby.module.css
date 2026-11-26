@@ -1,10 +1,5 @@
-/* ==========================================================================
-   Lobby de partidas
-   Cabecera con el jugador, tres paneles (buscar, unirse, crear) y una barra
-   de pestañas fija abajo, como en el wireframe.
-   ========================================================================== */
 
-/* --- Cabecera del jugador --- */
+
 .header {
   position: relative;
   display: flex;
@@ -17,6 +12,7 @@
 }
 
 .logo {
+  margin-inline-end: auto;
   padding: var(--space-1);
   border-radius: var(--radius-sm);
   background: var(--color-primary);
@@ -28,18 +24,15 @@
 }
 
 .player {
-  margin-inline-end: auto;
+  margin: 0;
   color: var(--color-primary);
   font-family: var(--font-heading);
   font-size: clamp(0.8rem, 1.5vw + 0.4rem, 1.1rem);
 }
 
-/* --- Paneles --- */
 .lobby {
   display: grid;
   gap: var(--space-6);
-
-  /* espacio para que la barra de pestañas no tape el contenido */
   padding-block-end: calc(var(--space-12) + 4.5rem);
 }
 
@@ -71,7 +64,6 @@
   justify-self: start;
 }
 
-/* Ilustraciones oscuras sobre panel amarillo, igual que en la landing */
 .picture {
   justify-self: center;
   width: min(100%, 14rem);
@@ -84,7 +76,6 @@
   );
 }
 
-/* Formulario para unirse con código */
 .joinForm {
   display: grid;
   gap: var(--space-3);
@@ -94,7 +85,6 @@
   margin: 0;
 }
 
-/* --- Barra de pestañas inferior --- */
 .tabBar {
   position: fixed;
   inset-inline: 0;
@@ -132,7 +122,6 @@
     color var(--transition-fast);
 }
 
-/* Ícono encima del texto de cada pestaña */
 .tab::before {
   content: "";
   width: 1.75rem;
@@ -150,7 +139,6 @@ a.tab:hover::before {
   translate: 0 -3px;
 }
 
-/* El buzón todavía no es un enlace: se muestra atenuado */
 li.tab {
   color: var(--color-text-muted);
 }
@@ -159,7 +147,6 @@ li.tab::before {
   opacity: 0.6;
 }
 
-/* --- Íconos (Kenney Game Icons, CC0) --- */
 .iconMatch {
   --icon: url("../../../public/icons/massiveMultiplayer.png");
 }
@@ -172,8 +159,6 @@ li.tab::before {
   --icon: url("../../../public/icons/import.png");
 }
 
-/* --- Escritorio: "Buscar" grande a la izquierda y los otros dos apilados
-   a la derecha --- */
 @media (width >= 48rem) {
   .lobby {
     grid-template-columns: 3fr 2fr;

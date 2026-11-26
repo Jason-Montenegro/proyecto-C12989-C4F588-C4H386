@@ -1,7 +1,5 @@
-/* ==========================================================================
-   Página "Sobre nosotros": tarjeta centrada con el texto del equipo y el
-   enlace al repositorio, como en el wireframe.
-   ========================================================================== */
+
+
 .page {
   display: grid;
   place-items: center;
@@ -11,14 +9,12 @@
   width: min(100%, 56rem);
 }
 
-/* --- Enlace al repositorio --- */
 .repo {
   display: flex;
   justify-content: center;
   margin-block-start: var(--space-8);
 }
 
-/* El logo de GitHub gira al pasar el puntero sobre el botón */
 .repoLink img {
   transition: rotate var(--transition-base);
 }

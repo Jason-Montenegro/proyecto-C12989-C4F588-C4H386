@@ -1,19 +1,46 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/components/AuthProvider";
 import styles from "./HeaderNav.module.css";
 
-const links = [
+type NavLink = { href: string; label: string; icon: string; cta?: boolean };
+
+const publicLinks: NavLink[] = [
   { href: "/", label: "Inicio", icon: styles.iconHome },
   { href: "/how-to-play", label: "Cómo jugar", icon: styles.iconQuestion },
   { href: "/about", label: "Sobre Nosotros", icon: styles.iconInformation },
-  { href: "/lobby", label: "Ir al lobby", icon: styles.iconMultiplayer },
-  { href: "/results", label: "Resultados", icon: styles.iconTrophy },
-  { href: "/login", label: "Iniciar sesión", icon: styles.iconLogin },
-  { href: "/register", label: "Registrarse", icon: styles.iconRegister },
   { href: "/credits", label: "Créditos", icon: styles.iconStar },
-  { href: "/ingame", label: "Jugar ahora", icon: styles.iconPlay, cta: true },
 ];
 
+const guestLinks: NavLink[] = [
+  { href: "/login", label: "Iniciar sesión", icon: styles.iconLogin },
+  { href: "/register", label: "Registrarse", icon: styles.iconRegister },
+];
+
+const playLink: NavLink = {
+  href: "/lobby",
+  label: "Jugar ahora",
+  icon: styles.iconPlay,
+  cta: true,
+};
+
 function NavList({ className }: { className: string }) {
+  const { user, loading, logout } = useAuth();
+  const router = useRouter();
+
+  const links = [
+    ...publicLinks,
+    ...(!loading && !user ? guestLinks : []),
+    playLink,
+  ];
+
+  const handleLogout = async () => {
+    await logout();
+    router.replace("/login");
+  };
+
   return (
     <ul className={className}>
       {links.map(({ href, label, icon, cta }) => (
@@ -26,6 +53,17 @@ function NavList({ className }: { className: string }) {
           </Link>
         </li>
       ))}
+      {user && (
+        <li>
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="button buttonSecondary"
+          >
+            Cerrar sesión
+          </button>
+        </li>
+      )}
     </ul>
   );
 }
