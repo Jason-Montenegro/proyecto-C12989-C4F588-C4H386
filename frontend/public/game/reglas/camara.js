@@ -1,8 +1,4 @@
-import {
-  ALTO_VISTA,
-  PENALIZACION_BORDE_MS,
-  ZONA_LIDER,
-} from "../constantes.js";
+import { ALTO_VISTA, ZONA_LIDER } from "../constantes.js";
 import { matarJugador } from "./muerte.js";
 
 /** @typedef {import("../tipos.js").EstadoJuego} EstadoJuego */
@@ -48,8 +44,8 @@ function alturaMaxima(mapa) {
 }
 
 /**
- * Si el borde inferior de la cámara alcanza al jugador, este muere y
- * acumula `PENALIZACION_BORDE_MS` de penalización en su tiempo.
+ * Si el borde inferior de la cámara alcanza al jugador, este muere con la
+ * penalización por borde, la más cara del juego.
  * @param {EstadoJuego} estado Estado de la partida.
  * @param {Jugador} jugador Jugador a revisar (se modifica si muere).
  * @returns {EventoJuego[]} Evento "muerte" con causa "borde".
@@ -58,6 +54,5 @@ export function revisarBordeInferior(estado, jugador) {
   if (jugador.estado !== "corriendo" || jugador.y >= estado.camara.y) {
     return [];
   }
-  jugador.penalizacionMs += PENALIZACION_BORDE_MS;
   return [matarJugador(jugador, "borde")];
 }

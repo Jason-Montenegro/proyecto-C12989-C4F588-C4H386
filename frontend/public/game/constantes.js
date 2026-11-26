@@ -25,7 +25,21 @@ export const DISTANCIA_REBOTE = 24;
 
 /** El rebotador empuja más lejos que un muro o una caja. */
 export const MULTIPLICADOR_REBOTADOR = 2;
+/** Penalización de la primera muerte por el borde inferior de la cámara. */
 export const PENALIZACION_BORDE_MS = 5000;
+
+/** Penalización de la primera muerte en una sierra o un agujero. */
+export const PENALIZACION_OBSTACULO_MS = 2000;
+
+/**
+ * Cada muerte anterior agrega esta fracción a la penalización base:
+ * con 0.5, el borde cuesta 5 s, luego 7.5 s, luego 10 s…
+ */
+export const INCREMENTO_PENALIZACION = 0.5;
+
+/** Tras reaparecer, el jugador queda aturdido y lento durante este tiempo. */
+export const ATURDIMIENTO_MS = 1500;
+export const MULTIPLICADOR_ATURDIDO = 0.4;
 export const TIEMPO_LIMITE_MS = 180000;
 
 /** Paso de tiempo máximo por cuadro, para evitar saltos tras una pausa. */

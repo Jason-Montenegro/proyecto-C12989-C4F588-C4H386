@@ -1,4 +1,5 @@
 import {
+  MULTIPLICADOR_ATURDIDO,
   MULTIPLICADOR_IMPULSO,
   MULTIPLICADOR_LENTO,
   VELOCIDAD_BASE,
@@ -13,14 +14,16 @@ import { mantenerEnPista } from "./geometria.js";
 const QUIETO = Object.freeze({ x: 0, y: 0 });
 
 /**
- * Velocidad efectiva del jugador: base × impulso × terreno lento.
+ * Velocidad efectiva del jugador: base × impulso × terreno lento ×
+ * aturdimiento.
  * @param {Jugador} jugador Jugador a revisar.
  * @returns {number} Unidades por segundo.
  */
 export function calcularVelocidad(jugador) {
   const impulso = jugador.impulsoMs > 0 ? MULTIPLICADOR_IMPULSO : 1;
   const lento = jugador.enTerrenoLento ? MULTIPLICADOR_LENTO : 1;
-  return VELOCIDAD_BASE * impulso * lento;
+  const aturdido = jugador.aturdidoMs > 0 ? MULTIPLICADOR_ATURDIDO : 1;
+  return VELOCIDAD_BASE * impulso * lento * aturdido;
 }
 
 /**

@@ -86,6 +86,7 @@
  * @property {EstadoJugador} estado
  * @property {number} reaparicionMs Ms que faltan para reaparecer (0 = vivo).
  * @property {number} impulsoMs Ms que le quedan de impulso (0 = sin impulso).
+ * @property {number} aturdidoMs Ms de lentitud tras reaparecer (0 = normal).
  * @property {boolean} enTerrenoLento
  * @property {number} muertes
  * @property {number} penalizacionMs
@@ -134,6 +135,7 @@
 /**
  * @typedef {object} DatosEvento
  * @property {"obstaculo"|"borde"} [causa]
+ * @property {number} [penalizacionMs] Penalización que sumó esta muerte.
  * @property {number} [segundos]
  * @property {MotivoAccionInvalida} [motivo]
  */

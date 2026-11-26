@@ -1,6 +1,10 @@
 import {
   ALTO_VISTA,
   ANCHO_MUNDO,
+  ATURDIMIENTO_MS,
+  INCREMENTO_PENALIZACION,
+  PENALIZACION_BORDE_MS,
+  PENALIZACION_OBSTACULO_MS,
   RADIO_JUGADOR,
   REAPARICION_MS,
 } from "../constantes.js";
@@ -54,22 +58,43 @@ function tocaObstaculoMortal(jugador, obstaculo) {
 }
 
 /**
- * Deja al jugador muerto: sin efectos ni destino, esperando reaparecer.
+ * Deja al jugador muerto: sin efectos ni destino, esperando reaparecer, y
+ * suma a su tiempo la penalización que corresponde a esta muerte.
  * La usan los obstáculos mortales y el borde inferior de la cámara.
  * @param {Jugador} jugador Jugador que muere (se modifica).
  * @param {"obstaculo"|"borde"} causa Qué lo mató.
- * @returns {EventoJuego} Evento "muerte".
+ * @returns {EventoJuego} Evento "muerte" con la causa y la penalización.
  */
 export function matarJugador(jugador, causa) {
+  const penalizacionMs = calcularPenalizacion(jugador.muertes, causa);
   Object.assign(jugador, {
     estado: "muerto",
     reaparicionMs: REAPARICION_MS,
     muertes: jugador.muertes + 1,
+    penalizacionMs: jugador.penalizacionMs + penalizacionMs,
     destino: null,
     impulsoMs: 0,
+    aturdidoMs: 0,
     enTerrenoLento: false,
   });
-  return { tipo: "muerte", jugadorId: jugador.id, datos: { causa } };
+  return {
+    tipo: "muerte",
+    jugadorId: jugador.id,
+    datos: { causa, penalizacionMs },
+  };
+}
+
+/**
+ * Penalización de una muerte: crece con cada muerte anterior, así morir
+ * seguido sale cada vez más caro.
+ * @param {number} muertesPrevias Muertes que el jugador ya tenía.
+ * @param {"obstaculo"|"borde"} causa Qué lo mató.
+ * @returns {number} Milisegundos que se suman a su tiempo final.
+ */
+export function calcularPenalizacion(muertesPrevias, causa) {
+  const base =
+    causa === "borde" ? PENALIZACION_BORDE_MS : PENALIZACION_OBSTACULO_MS;
+  return base * (1 + muertesPrevias * INCREMENTO_PENALIZACION);
 }
 
 /**
@@ -87,6 +112,7 @@ export function avanzarReaparicion(estado, jugador, dtMs) {
   }
   Object.assign(jugador, {
     estado: "corriendo",
+    aturdidoMs: ATURDIMIENTO_MS,
     ...buscarPuntoDeReaparicion(estado, jugador),
   });
   return [{ tipo: "reaparicion", jugadorId: jugador.id }];

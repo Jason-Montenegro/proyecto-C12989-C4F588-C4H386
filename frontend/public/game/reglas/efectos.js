@@ -6,8 +6,9 @@ import { contienePunto } from "./geometria.js";
 /** @typedef {import("../tipos.js").Zona} Zona */
 
 /**
- * Descuenta el impulso y revisa si el jugador pisa una zona de impulso o
- * de terreno lento. El efecto aplica mientras su centro está en la zona.
+ * Descuenta el impulso y el aturdimiento, y revisa si el jugador pisa una
+ * zona de impulso o de terreno lento. El efecto de una zona aplica
+ * mientras su centro está dentro.
  * @param {Jugador} jugador Jugador en carrera (se modifica).
  * @param {Zona[]} zonas Zonas del mapa.
  * @param {number} dtMs Tiempo del paso.
@@ -15,6 +16,7 @@ import { contienePunto } from "./geometria.js";
  */
 export function actualizarEfectos(jugador, zonas, dtMs) {
   jugador.impulsoMs = Math.max(0, jugador.impulsoMs - dtMs);
+  jugador.aturdidoMs = Math.max(0, jugador.aturdidoMs - dtMs);
   return [
     ...revisarImpulso(jugador, zonas),
     ...revisarTerrenoLento(jugador, zonas),

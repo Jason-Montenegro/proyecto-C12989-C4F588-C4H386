@@ -54,6 +54,7 @@ function crearJugador(participante, indice, total) {
     estado: "corriendo",
     reaparicionMs: 0,
     impulsoMs: 0,
+    aturdidoMs: 0,
     enTerrenoLento: false,
     muertes: 0,
     penalizacionMs: 0,
